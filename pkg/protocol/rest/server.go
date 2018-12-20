@@ -12,8 +12,8 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 
-	"github.com/amsokol/go-grpc-http-rest-microservice-tutorial/pkg/logger"
-	"github.com/amsokol/go-grpc-http-rest-microservice-tutorial/pkg/protocol/rest/middleware"
+	"github.com/navono/gRPC-http-rest-demo/pkg/logger"
+	"github.com/navono/gRPC-http-rest-demo/pkg/protocol/rest/middleware"
 )
 
 // RunServer runs HTTP/REST gateway
@@ -40,6 +40,7 @@ func RunServer(ctx context.Context, grpcPort, httpPort string) error {
 	go func() {
 		for range c {
 			// sig is a ^C, handle it
+			logger.Log.Warn("shutting down HTTP/REST server...")
 		}
 
 		_, cancel := context.WithTimeout(ctx, 5*time.Second)
