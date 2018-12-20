@@ -1,0 +1,36 @@
+syntax="proto3"
+package v1
+
+import "google/protobuf/timestamp.proto";
+
+// Task we have to do
+message ToDo {
+  // Unique integer indentifier of the todo task
+  int64 id = 1;
+  // Titile of the task
+  string title = 2;
+  // Detail description of the task
+  string description = 3;
+  // Date and time to remind the todo task
+  google.protobuf.Timestamp reminder = 4;
+}
+
+// Request data to create new todo task
+message CreateRequest {
+  // API versioning
+  string api = 1;
+  ToDo toDo = 2;
+}
+
+// Response that contains data for created todo task
+message CreateResponse {
+  // API versioning
+  string api = 1;
+  int64 id = 2;
+}
+
+// Service to manage list of todo tasks
+service ToDoService {
+  // Create new todo task
+  rpc Create (CreateRequest) returns (CreateResponse);
+}
