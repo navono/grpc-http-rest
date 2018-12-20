@@ -39,7 +39,9 @@
 
 编译时可能需要科学上网。
 
-## 服务器端
+## grpc
+
+### 服务器端
 
 编译：
 > cd cmd/server
@@ -49,7 +51,7 @@
 运行：
 > .\server.exe -grpc-port=9090 -db-host=localhost:3306 -db-user=root -db-password=123456 -db-schema=todo
 
-## 客户端
+### 客户端
 
 编译：
 > cd cmd/client-grpc
@@ -58,3 +60,25 @@
 
 运行：
 > .\client-grpc.exe -server=localhost:9090
+
+## rest(gRPC-gateway)
+
+### 服务器端
+
+编译：
+> cd cmd/server
+>
+> go build .
+
+运行：
+> .\server.exe -grpc-port=9090 -http-port=8080 -db-host=localhost:3306 -db-user=root -db-password=123456 -db-schema=todo
+
+### 客户端
+
+编译：
+> cd cmd/client-rest
+>
+> go build .
+
+运行：
+> .\client-rest.exe -server=http://localhost:8080
