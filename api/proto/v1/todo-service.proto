@@ -2,16 +2,45 @@ syntax="proto3";
 package v1;
 
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+
+// https://github.com/grpc-ecosystem/grpc-gateway/blob/ab0345bb328757bfef2f3d7d4e642e182eb985b9/examples/proto/examplepb/a_bit_of_everything.proto
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+	info: {
+		title: "ToDo service";
+		version: "1.0";
+		contact: {
+			name: "gRPC-http-rest-demo project";
+			url: "https://github.com/navono/gRPC-http-rest-demo";
+			email: "navono007@gmail.com";
+        };
+    };
+    schemes: HTTP;
+    consumes: "application/json";
+    produces: "application/json";
+    responses: {
+		key: "404";
+		value: {
+			description: "Returned when the resource does not exist.";
+			schema: {
+				json_schema: {
+					type: STRING;
+				}
+			}
+		}
+	}
+};
 
 // Task we have to do
 message ToDo {
-  // Unique integer indentifier of the todo task
+  // Unique integer identifier of the todo task
   int64 id = 1;
 
-  // Titile of the task
+  // Title of the task
   string title = 2;
 
-  // Detail description of the task
+  // Detail description of the todo task
   string description = 3;
 
   // Date and time to remind the todo task
@@ -19,17 +48,17 @@ message ToDo {
 }
 
 // Request data to create new todo task
-message CreateRequest {
-  // API versioning
+message CreateRequest{
+  // API versioning: it is my best practice to specify version explicitly
   string api = 1;
 
   // Task entity to add
   ToDo toDo = 2;
 }
 
-// Response that contains data for created todo task
-message CreateResponse {
-  // API versioning
+// Contains data of created todo task
+message CreateResponse{
+  // API versioning: it is my best practice to specify version explicitly
   string api = 1;
 
   // ID of created task
@@ -37,8 +66,8 @@ message CreateResponse {
 }
 
 // Request data to read todo task
-message ReadRequest {
-  // API versioning
+message ReadRequest{
+  // API versioning: it is my best practice to specify version explicitly
   string api = 1;
 
   // Unique integer identifier of the todo task
@@ -46,8 +75,8 @@ message ReadRequest {
 }
 
 // Contains todo task data specified in by ID request
-message ReadResponse {
-  // API versioning
+message ReadResponse{
+  // API versioning: it is my best practice to specify version explicitly
   string api = 1;
 
   // Task entity read by ID
@@ -110,17 +139,44 @@ message ReadAllResponse{
 // Service to manage list of todo tasks
 service ToDoService {
   // Create new todo task
-  rpc Create (CreateRequest) returns (CreateResponse);
+  rpc Create(CreateRequest) returns (CreateResponse){
+      option (google.api.http) = {
+          post: "/v1/todo"
+          body: "*"
+      };
+  }
 
   // Read todo task
-  rpc Read(ReadRequest) returns (ReadResponse);
+  rpc Read(ReadRequest) returns (ReadResponse){
+      option (google.api.http) = {
+          get: "/v1/todo/{id}"
+      };
+  }
 
   // Update todo task
-  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse){
+      option (google.api.http) = {
+          put: "/v1/todo/{toDo.id}"
+          body: "*"
+
+          additional_bindings {
+              patch: "/v1/todo/{toDo.id}"
+              body: "*"
+          }
+      };
+  }
 
   // Delete todo task
-  rpc Delete(DeleteRequest) returns (DeleteResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse){
+      option (google.api.http) = {
+          delete: "/v1/todo/{id}"
+      };
+  }
 
-  // Read all todo tasks
-  rpc ReadAll(ReadAllRequest) returns (ReadAllResponse);
+    // Read all todo tasks
+    rpc ReadAll(ReadAllRequest) returns (ReadAllResponse){
+      option (google.api.http) = {
+          get: "/v1/todo/all"
+      };
+  }
 }
