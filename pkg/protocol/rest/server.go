@@ -37,6 +37,8 @@ func RunServer(ctx context.Context, grpcPort, httpPort string) error {
 	go func() {
 		for range c {
 			// sig is a ^C, handle it
+
+			log.Println("shutting down HTTP/REST server...")
 		}
 
 		_, cancel := context.WithTimeout(ctx, 5*time.Second)
