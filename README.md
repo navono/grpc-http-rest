@@ -5,3 +5,4 @@
   > go get -u github.com/golang/protobuf/protoc-gen-go
 - 编译
   > protoc --proto_path=api/proto/v1 --proto_path=third_party --go_out=plugins=grpc:pkg/api/v1 todo-service.proto
+- 数据库依赖于运行在 `Docker` 中的 `MySQL`
