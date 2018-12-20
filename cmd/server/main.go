@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/navono/gRPC-gateway-demo/pkg/cmd"
+	"github.com/navono/gRPC-http-rest-demo/pkg/cmd"
 )
 
 func main() {

@@ -9,7 +9,7 @@ import (
 	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc"
 
-	"github.com/navono/gRPC-gateway-demo/pkg/api/v1"
+	"github.com/navono/gRPC-http-rest-demo/pkg/api/v1"
 )
 
 const (
@@ -93,13 +93,13 @@ func main() {
 	log.Printf("ReadAll result: <%+v>\n\n", res4)
 
 	// Delete
-	req5 := v1.DeleteRequest{
-		Api: apiVersion,
-		Id:  id,
-	}
-	res5, err := c.Delete(ctx, &req5)
-	if err != nil {
-		log.Fatalf("Delete failed: %v", err)
-	}
-	log.Printf("Delete result: <%+v>\n\n", res5)
+	// req5 := v1.DeleteRequest{
+	// 	Api: apiVersion,
+	// 	Id:  id,
+	// }
+	// res5, err := c.Delete(ctx, &req5)
+	// if err != nil {
+	// 	log.Fatalf("Delete failed: %v", err)
+	// }
+	// log.Printf("Delete result: <%+v>\n\n", res5)
 }

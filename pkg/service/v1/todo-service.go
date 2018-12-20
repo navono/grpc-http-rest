@@ -1,18 +1,25 @@
 package v1
 
 import (
+	"context"
 	"database/sql"
+	"fmt"
+	"time"
 
-	"github.com/navono/gRPC-gateway-demo/pkg/api/v1"
+	"github.com/golang/protobuf/ptypes"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+
+	"github.com/navono/gRPC-http-rest-demo/pkg/api/v1"
 )
 
 const (
-	// // apiVersion is version of API is provided by server
+	// apiVersion is version of API is provided by server
 	apiVersion = "v1"
 )
 
 // toDoServiceServer is implementation of v1.ToDoServiceServer proto interface
-type todoServiceServer struct {
+type toDoServiceServer struct {
 	db *sql.DB
 }
 

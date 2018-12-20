@@ -9,8 +9,8 @@ import (
 	// mysql driver
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/navono/gRPC-gateway-demo/pkg/protocol/grpc"
-	"github.com/navono/gRPC-gateway-demo/pkg/service/v1"
+	"github.com/navono/gRPC-http-rest-demo/pkg/protocol/grpc"
+	"github.com/navono/gRPC-http-rest-demo/pkg/service/v1"
 )
 
 // Config is configuration for Server

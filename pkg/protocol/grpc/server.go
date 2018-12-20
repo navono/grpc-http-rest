@@ -7,7 +7,7 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/navono/gRPC-gateway-demo/pkg/api/v1"
+	"github.com/navono/gRPC-http-rest-demo/pkg/api/v1"
 	"google.golang.org/grpc"
 )
 
