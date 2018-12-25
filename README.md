@@ -43,13 +43,24 @@
 
 ### 服务器端
 
-编译：
-> cd cmd/server
->
-> go build .
+- 手动编译
+  > cd cmd/server
+  >
+  > go build .
 
-运行：
-> .\server.exe -grpc-port=9090 -http-port=8080 -db-host=localhost:3306 -db-user=root -db-password=123456 -db-schema=todo -log-level=-1 -log-time-format=2006-01-02T15:04:05.999999999Z07:00
+  运行：
+  > .\server.exe -grpc-port=9090 -http-port=8080 -db-host=localhost:3306 -db-user=root -db-password=123456 -db-schema=todo -log-level=-1 -log-time-format=2006-01-02T15:04:05.999999999Z07:00
+
+- 容器
+  </br>
+  构建镜像：
+  > .\scripts\buildImage.cmd
+
+  启动：
+  > .\scripts\start.cmd
+
+  停止：
+  > .\scripts\clean.cmd
 
 ### rpc客户端
 
