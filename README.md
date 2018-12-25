@@ -51,7 +51,7 @@
 运行：
 > .\server.exe -grpc-port=9090 -http-port=8080 -db-host=localhost:3306 -db-user=root -db-password=123456 -db-schema=todo -log-level=-1 -log-time-format=2006-01-02T15:04:05.999999999Z07:00
 
-### 客户端
+### rpc客户端
 
 编译：
 > cd cmd/client-grpc
@@ -61,19 +61,7 @@
 运行：
 > .\client-grpc.exe -server=localhost:9090
 
-## rest(gRPC-gateway)
-
-### 服务器端
-
-编译：
-> cd cmd/server
->
-> go build .
-
-运行：
-> .\server.exe -grpc-port=9090 -http-port=8080 -db-host=localhost:3306 -db-user=root -db-password=123456 -db-schema=todo -log-level=-1 -log-time-format=2006-01-02T15:04:05.999999999Z07:00
-
-### 客户端
+### rest客户端
 
 编译：
 > cd cmd/client-rest
