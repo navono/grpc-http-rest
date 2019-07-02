@@ -14,6 +14,7 @@
   > docker exec -it todo-mysql bash
   >
   > mysql -u root -p
+  >
   > ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
   >
   > ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
